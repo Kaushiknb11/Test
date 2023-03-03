@@ -5,7 +5,7 @@ Created on Sat Feb 11 17:09:49 2023
 
 @author: kaushiknarasimha
 """
-!pip install fastf1
+
 from datetime import datetime
 from email.policy import default
 from unicodedata import category
