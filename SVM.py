@@ -21,8 +21,8 @@ def generate_synthetic_data(n_samples, centers, noise):
     return X, y
 
 # Function to plot the SVM decision boundary
-def plot_svm(C=1.0, kernel='linear', sample_size=200, noise=0.1):
-    X, y = generate_synthetic_data(sample_size, 2, noise)
+def plot_svm(C=1.0, kernel='linear', sample_size=200, noise=0.1, centers=2):
+    X, y = generate_synthetic_data(sample_size, centers, noise)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     clf = SVC(C=C, kernel=kernel)
@@ -44,7 +44,7 @@ def plot_svm(C=1.0, kernel='linear', sample_size=200, noise=0.1):
     plt.scatter(X[:, 0], X[:, 1], c=y, edgecolors='k', cmap=plt.cm.Paired)
     plt.xlabel('X1')
     plt.ylabel('X2')
-    plt.title(f'SVM Decision Boundary (C={C}, kernel={kernel})')
+    plt.title(f'SVM Decision Boundary (C={C}, kernel={kernel}, centers={centers})')
     st.pyplot()
 
 # Define interactive sliders for SVM hyperparameters
@@ -52,6 +52,7 @@ C_slider = st.slider('C:', min_value=0.1, max_value=10.0, step=0.1, value=1.0)
 kernel_dropdown = st.selectbox('Kernel:', ['linear', 'poly', 'rbf', 'sigmoid'], index=0)
 sample_size_slider = st.slider('Sample Size:', min_value=10, max_value=1000, step=10, value=200)
 noise_slider = st.slider('Noise:', min_value=0.0, max_value=1.0, step=0.1, value=0.1)
+centers_slider = st.slider('Centers:', min_value=1, max_value=10, step=1, value=2)
 
 # Create an interactive widget
-plot_svm(C_slider, kernel_dropdown, sample_size_slider, noise_slider)
+plot_svm(C_slider, kernel_dropdown, sample_size_slider, noise_slider, centers_slider)
