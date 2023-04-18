@@ -22,8 +22,8 @@ from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 category = 'Support Vector Machines'
 
 
-#elif category == 'Support Vector Machines':
-#    st.markdown('''<c><h3>Support Vector Machines</h3></c>''', unsafe_allow_html=True)
+if category == 'Support Vector Machines':
+    st.markdown('''<c><h3>Support Vector Machines</h3></c>''', unsafe_allow_html=True)
 
 
     
