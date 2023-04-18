@@ -14,12 +14,14 @@ from sklearn.model_selection import train_test_split
 import streamlit as st
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-# Generate synthetic data with blobs
-X, y = make_blobs(n_samples=200, centers=2, random_state=42)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Define a function to generate synthetic data with blobs and noise
+def generate_synthetic_data(n_samples, centers, noise):
+    X, y = make_blobs(n_samples=n_samples, centers=centers, noise=noise, random_state=42)
+    return X, y
 
 # Function to plot the SVM decision boundary
-def plot_svm(C=1.0, kernel='linear'):
+def plot_svm(X, y, C=1.0, kernel='linear'):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     clf = SVC(C=C, kernel=kernel)
     clf.fit(X_train, y_train)
 
@@ -42,9 +44,14 @@ def plot_svm(C=1.0, kernel='linear'):
     plt.title(f'SVM Decision Boundary (C={C}, kernel={kernel})')
     st.pyplot()
 
-# Define interactive sliders for SVM hyperparameters
+# Define interactive sliders for SVM hyperparameters and sample size
 C_slider = st.slider('C:', min_value=0.1, max_value=10.0, step=0.1, value=1.0)
 kernel_dropdown = st.selectbox('Kernel:', ['linear', 'poly', 'rbf', 'sigmoid'], index=0)
+sample_size = st.slider('Sample Size:', min_value=50, max_value=1000, step=50, value=200)
+noise = st.slider('Noise:', min_value=0.0, max_value=1.0, step=0.1, value=0.0)
+
+# Generate synthetic data with blobs and noise
+X, y = generate_synthetic_data(sample_size, 2, noise)
 
 # Create an interactive widget
-plot_svm(C_slider, kernel_dropdown)
+plot_svm(X, y, C_slider, kernel_dropdown)
