@@ -46,7 +46,7 @@ if kernel == 'Polynomial':
         ("svm_clf", LinearSVC(C=10, loss="hinge", random_state=42))
     ])
 else:
-    X, y = make_circles(n_samples=n_samples, noise=noise, random_state=42)
+    X, y = make_blobs(n_samples=n_samples, noise=noise, random_state=42)
     if kernel == "Linear":
         clf = Pipeline([
             ("scaler", StandardScaler()),
