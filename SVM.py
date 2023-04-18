@@ -54,6 +54,9 @@ sample_size_slider = st.slider('Sample Size:', min_value=10, max_value=1000, ste
 noise_slider = st.slider('Noise:', min_value=0.0, max_value=1.0, step=0.1, value=0.1)
 centers_slider = st.slider('Centers:', min_value=1, max_value=10, step=1, value=2)
 
+# Convert centers_slider value to integer
+centers = int(centers_slider)
+
 # Create an interactive widget
-plot_svm(C_slider, kernel_dropdown, sample_size_slider, noise_slider, int(centers_slider))
+plot_svm(C_slider, kernel_dropdown, sample_size_slider, noise_slider, centers)
 
