@@ -41,8 +41,6 @@ def plot_svm(C=1.0, kernel='linear'):
     plt.ylabel('X2')
     plt.title(f'SVM Decision Boundary (C={C}, kernel={kernel})')
     st.pyplot()
-    
-
 
 # Define interactive sliders for SVM hyperparameters
 C_slider = st.slider('C:', min_value=0.1, max_value=10.0, step=0.1, value=1.0)
