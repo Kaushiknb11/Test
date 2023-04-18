@@ -19,21 +19,11 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 
 
-category = st.selectbox('Select Sandbox Category', ['Support Vector Machines','Neural Networks',],key='category')
+category = 'Support Vector Machines'
 
 
-if category == 'Neural Networks':
-    st.markdown('Testing Sample Plotly Animations')
-    
-    df = px.data.gapminder()
-
-    fig = px.bar(df, x="continent", y="pop", color="continent",
-    animation_frame="year", animation_group="country", range_y=[0,4000000000])
-    
-    st.plotly_chart(fig)
-
-elif category == 'Support Vector Machines':
-    st.markdown('''<c><h3>Support Vector Machines</h3></c>''', unsafe_allow_html=True)
+#elif category == 'Support Vector Machines':
+#    st.markdown('''<c><h3>Support Vector Machines</h3></c>''', unsafe_allow_html=True)
 
 
     
